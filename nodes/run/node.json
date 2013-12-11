@@ -12,6 +12,11 @@
         "title": "RethinkDB query",
         "required": true
       },
+      "conn": {
+        "type": "function",
+        "title": "Connection",
+        "required": true
+      },
       "useOutdated": {
         "type": "boolean",
         "title": "Use Outdated",

@@ -102,9 +102,9 @@
     {
       "ports": {
         "input": {
-          "conn": {
+          "rethinkdb": {
             "type": "function",
-            "title": "Connection",
+            "title": "RethinkDB",
             "required": true
           },
           "dbName": {
@@ -127,7 +127,7 @@
       "ns": "rethinkdb",
       "name": "db",
       "env": "server",
-      "fn": "output = { db: input.conn.db(input.dbName) };\n"
+      "fn": "output = { db: input.rethinkdb.db(input.dbName) };\n"
     },
     {
       "ports": {
@@ -281,10 +281,37 @@
     },
     {
       "ports": {
+        "input": {},
+        "output": {
+          "rethinkdb": {
+            "type": "function",
+            "title": "RethinkDB"
+          }
+        }
+      },
+      "require": {
+        "rethinkdb": "latest"
+      },
+      "phrases": {
+        "active": "Requiring RethinkDB"
+      },
+      "description": "RethinkDB require",
+      "ns": "rethinkdb",
+      "name": "require",
+      "env": "server",
+      "fn": "output = { rethinkdb: rethinkdb }\n"
+    },
+    {
+      "ports": {
         "input": {
           "query": {
             "type": "function",
             "title": "RethinkDB query",
+            "required": true
+          },
+          "conn": {
+            "type": "function",
+            "title": "Connection",
             "required": true
           },
           "useOutdated": {
