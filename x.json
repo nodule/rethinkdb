@@ -133,7 +133,7 @@
         "input": {
           "query": {
             "type": "function",
-            "title": "Table",
+            "title": "Query",
             "required": true
           }
         },
@@ -333,9 +333,9 @@
     {
       "ports": {
         "input": {
-          "table": {
+          "query": {
             "type": "function",
-            "title": "Table",
+            "title": "Query",
             "required": true
           }
         },
@@ -380,9 +380,9 @@
           }
         },
         "output": {
-          "table": {
+          "query": {
             "type": "function",
-            "title": "Table"
+            "title": "Query"
           }
         }
       },
@@ -393,7 +393,7 @@
       "ns": "rethinkdb",
       "name": "table",
       "env": "server",
-      "fn": "output = { table: input.db.table(input.tableName, input.options) };\n"
+      "fn": "output = { query: input.db.table(input.tableName, input.options) };\n"
     },
     {
       "ports": {
@@ -410,9 +410,9 @@
           }
         },
         "output": {
-          "table": {
+          "query": {
             "type": "function",
-            "title": "table"
+            "title": "Query"
           }
         }
       },
@@ -423,7 +423,7 @@
       "ns": "rethinkdb",
       "name": "tableCreate",
       "env": "server",
-      "fn": "output = { table: input.db.tableCreate(input.tableName) };\n"
+      "fn": "output = { query: input.db.tableCreate(input.tableName) };\n"
     },
     {
       "ports": {
@@ -440,9 +440,9 @@
           }
         },
         "output": {
-          "table": {
+          "query": {
             "type": "function",
-            "title": "table"
+            "title": "Query"
           }
         }
       },
@@ -453,7 +453,7 @@
       "ns": "rethinkdb",
       "name": "tableDrop",
       "env": "server",
-      "fn": "output = { table: input.db.tableDrop(input.tableName) };\n"
+      "fn": "output = { query: input.db.tableDrop(input.tableName) };\n"
     },
     {
       "ports": {
@@ -465,9 +465,9 @@
           }
         },
         "output": {
-          "table": {
+          "query": {
             "type": "function",
-            "title": "table"
+            "title": "query"
           }
         }
       },
@@ -478,7 +478,7 @@
       "ns": "rethinkdb",
       "name": "tableList",
       "env": "server",
-      "fn": "output = { table: input.db.tableList() };\n"
+      "fn": "output = { query: input.db.tableList() };\n"
     },
     {
       "ports": {
