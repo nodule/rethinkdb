@@ -7,9 +7,9 @@
   },
   "ports": {
     "input": {
-      "conn": {
+      "rethinkdb": {
         "type": "function",
-        "title": "Connection",
+        "title": "RethinkDB",
         "required": true
       },
       "dbName": {

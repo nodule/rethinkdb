@@ -1,0 +1,21 @@
+{
+  "name": "require",
+  "ns": "rethinkdb",
+  "description": "RethinkDB require",
+  "phrases": {
+    "active": "Requiring RethinkDB"
+  },
+  "require": {
+    "rethinkdb": "latest"
+  },
+  "ports": {
+    "input": {
+    },
+    "output": {
+      "rethinkdb": {
+        "type": "function",
+        "title": "RethinkDB"
+      }
+    }
+  }
+}
