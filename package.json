@@ -1,0 +1,29 @@
+{
+  "name": "nodule-rethinkdb",
+  "description": "rethinkdb for Chiχ",
+  "author": "Rob Halff <rob.halff@gmail.com>",
+  "version": "0.0.3",
+  "licenses": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/nodule/rethinkdb.git"
+  },
+  "engines": {
+    "node": ">=0.6.0"
+  },
+  "dependencies": {
+    "rethinkdb": "latest"
+  },
+  "devDependencies": {
+    "chit": "0.x.x"
+  },
+  "main": "x",
+  "scripts": {
+    "test": "chit"
+  },
+  "chix": {
+    "name": "rethinkdb",
+    "env": "server",
+    "color": "rgb(185,29,8)"
+  }
+}

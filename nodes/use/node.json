@@ -1,0 +1,24 @@
+{
+  "name": "use",
+  "ns": "rethinkdb",
+  "description": "RethinkDB use",
+  "phrases": {
+    "active": "Changing to database {{input.dbName}}"
+  },
+  "ports": {
+    "input": {
+      "conn": {
+        "type": "function",
+        "title": "Connection",
+        "required": true
+      },
+      "dbName": {
+        "type": "string",
+        "title": "Database Name",
+        "description": "change the default database on this connection"
+      }
+    },
+    "output": {
+    }
+  }
+}

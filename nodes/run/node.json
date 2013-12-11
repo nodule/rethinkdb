@@ -1,0 +1,47 @@
+{
+  "name": "run",
+  "ns": "rethinkdb",
+  "description": "RethinkDB run",
+  "phrases": {
+    "active": "running..."
+  },
+  "ports": {
+    "input": {
+      "query": {
+        "type": "function",
+        "title": "RethinkDB query",
+        "required": true
+      },
+      "useOutdated": {
+        "type": "boolean",
+        "title": "Use Outdated",
+        "description": "whether or not outdated reads are OK",
+        "default": false
+      },
+      "timeFormat": {
+        "type": "string",
+        "enum": ["native", "raw"],
+        "title": "Time Format",
+        "description": "what format to return times in (default: `'native'`). Set this to `'raw'` if you want times returned as JSON objects for exporting.",
+        "default": false
+      },
+      "profile": {
+        "type": "boolean",
+        "title": "Profile",
+        "description": "whether or not to return a profile of the query's execution.",
+        "default": false
+      }
+    },
+    "output": {
+      "error": {
+        "type": "object",
+        "title": "Error"
+      },
+      "result": {
+        "type": "object",
+        "title": "Result",
+        "description": "A single JSON result, or a cursor, depending on the query"
+      }
+    }
+  }
+}

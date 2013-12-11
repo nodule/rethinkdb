@@ -1,0 +1,42 @@
+{
+  "name": "table",
+  "ns": "rethinkdb",
+  "description": "RethinkDB table",
+  "phrases": {
+    "active": "Selecting table {{input.tableName}}"
+  },
+  "ports": {
+    "input": {
+      "db": {
+        "type": "function",
+        "title": "Database",
+        "required": true
+      },
+      "tableName": {
+        "type": "string",
+        "title": "Table Name",
+        "description": "Select all documents in a table. This command can be chained with other commands to do further processing on the data."
+      },
+      "options": {
+        "title": "Options",
+        "properties": {
+          "useOutdated": {
+            "type": "boolean",
+            "title": "Use Outdated",
+            "default": false
+          }
+        }
+      }
+    },
+    "output": {
+      "error": {
+        "type": "object",
+        "title": "Error"
+      },
+      "conn": {
+        "type": "function",
+        "title": "Connection"
+      }
+    }
+  }
+}
