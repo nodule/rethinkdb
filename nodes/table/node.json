@@ -19,6 +19,7 @@
       },
       "options": {
         "title": "Options",
+        "type": "object",
         "properties": {
           "useOutdated": {
             "type": "boolean",
