@@ -47,6 +47,7 @@
         "input": {
           "options": {
             "title": "Options",
+            "type": "object",
             "properties": {
               "host": {
                 "type": "string",
