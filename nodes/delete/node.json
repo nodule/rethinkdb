@@ -9,7 +9,7 @@
     "input": {
       "query": {
         "type": "function",
-        "title": "Table",
+        "title": "Query",
         "required": true
       }
     },

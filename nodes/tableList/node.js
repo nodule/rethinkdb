@@ -1,1 +1,1 @@
-output = { table: input.db.tableList() };
+output = { query: input.db.tableList() };

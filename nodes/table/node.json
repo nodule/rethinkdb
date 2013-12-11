@@ -29,9 +29,9 @@
       }
     },
     "output": {
-      "table": {
+      "query": {
         "type": "function",
-        "title": "Table"
+        "title": "Query"
       }
     }
   }
