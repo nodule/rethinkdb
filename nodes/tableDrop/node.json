@@ -1,0 +1,28 @@
+{
+  "name": "tableDrop",
+  "ns": "rethinkdb",
+  "description": "Table Drop",
+  "phrases": {
+    "active": "Dropping table"
+  },
+  "ports": {
+    "input": {
+      "db": {
+        "type": "function",
+        "title": "Database",
+        "required": true
+      },
+      "tableName": {
+        "type": "string",
+        "title": "Table Name",
+        "required": true
+      }
+    },
+    "output": {
+      "table": {
+        "type": "function",
+        "title": "table"
+      }
+    }
+  }
+}

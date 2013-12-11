@@ -1,0 +1,28 @@
+{
+  "name": "replace",
+  "ns": "rethinkdb",
+  "description": "Replace JSON document in a table."
+  "phrases": {
+    "active": "Replacing document"
+  },
+  "ports": {
+    "input": {
+      "query": {
+        "type": "function",
+        "title": "Table",
+        "required": true
+      },
+      "data": {
+        "type": "any",
+        "title": "Document replace",
+        "description": ""
+      }
+    },
+    "output": {
+      "query": {
+        "type": "function",
+        "title": "Query"
+      }
+    }
+  }
+}

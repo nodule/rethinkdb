@@ -1,0 +1,28 @@
+{
+  "name": "tableCreate",
+  "ns": "rethinkdb",
+  "description": "Table Create",
+  "phrases": {
+    "active": "Creating table"
+  },
+  "ports": {
+    "input": {
+      "db": {
+        "type": "function",
+        "title": "Database",
+        "required": true
+      },
+      "tableName": {
+        "type": "string",
+        "title": "Table Name",
+        "required": true
+      }
+    },
+    "output": {
+      "table": {
+        "type": "function",
+        "title": "table"
+      }
+    }
+  }
+}

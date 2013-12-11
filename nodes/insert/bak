@@ -1,0 +1,48 @@
+{
+  "name": "insert",
+  "ns": "rethinkdb",
+  "description": "Insert JSON documents into a table. Accepts a single JSON document or an array of documents.",
+  "phrases": {
+    "active": "inserting"
+  },
+  "ports": {
+    "input": {
+      "table": {
+        "type": "function",
+        "title": "Table",
+        "required": true
+      },
+      "data": {
+        "type": "any",
+        "title": "JSON Document(s)",
+        "description": ""
+      }
+    },
+    "output": {
+      "result": {
+        "type": "object",
+        "title": "Result",
+        "properties": {
+          "inserted": {
+            "description": "the number of documents that were succesfully inserted"
+          },
+          "replaced": {
+            "description": " replaced: the number of documents that were updated when upsert is used"
+          },
+          "unchanged": {
+            "description": "the number of documents that would have been modified, except that the new value was the same as the old value when doing an upsert"
+          },
+          "errors": {
+            "description": "the number of errors encountered while inserting; if errors where encountered while inserting, first_error contains the text of the first error"
+          },
+          "generated_keys": {
+            "description": "a list of generated primary key values"
+          },
+          "generated_keys": {
+            "description": "deleted and skipped: 0 for an insert operation."
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,28 @@
+{
+  "name": "db",
+  "ns": "rethinkdb",
+  "description": "RethinkDB database",
+  "phrases": {
+    "active": "Selecting database {{input.db}}"
+  },
+  "ports": {
+    "input": {
+      "conn": {
+        "type": "function",
+        "title": "Connection",
+        "required": true
+      },
+      "dbName": {
+        "type": "string",
+        "title": "Databse Name",
+        "description": "Select a database"
+      }
+    },
+    "output": {
+      "db": {
+        "type": "function",
+        "title": "Database"
+      }
+    }
+  }
+}

@@ -29,13 +29,9 @@
       }
     },
     "output": {
-      "error": {
-        "type": "object",
-        "title": "Error"
-      },
-      "conn": {
+      "table": {
         "type": "function",
-        "title": "Connection"
+        "title": "Table"
       }
     }
   }

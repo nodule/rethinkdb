@@ -1,0 +1,28 @@
+{
+  "name": "get",
+  "ns": "rethinkdb",
+  "description": "RethinkDB get",
+  "phrases": {
+    "active": "Get {{input.id}}"
+  },
+  "ports": {
+    "input": {
+      "table": {
+        "type": "function",
+        "title": "Table",
+        "required": true
+      },
+      "id": {
+        "type": "string",
+        "title": "ID",
+        "description": "Get a document by primary key"
+      }
+    },
+    "output": {
+      "query": {
+        "type": "function",
+        "title": "Query"
+      }
+    }
+  }
+}

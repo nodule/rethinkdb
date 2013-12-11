@@ -1,0 +1,23 @@
+{
+  "name": "tableList",
+  "ns": "rethinkdb",
+  "description": "Table List",
+  "phrases": {
+    "active": "Getting tableList"
+  },
+  "ports": {
+    "input": {
+      "db": {
+        "type": "function",
+        "title": "Database",
+        "required": true
+      }
+    },
+    "output": {
+      "table": {
+        "type": "function",
+        "title": "table"
+      }
+    }
+  }
+}

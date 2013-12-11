@@ -1,1 +1,1 @@
-input.db.table(input.dbName, input.options);
+output = { table: input.db.table(input.tableName, input.options) };
