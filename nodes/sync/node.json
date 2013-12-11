@@ -1,7 +1,7 @@
 {
   "name": "sync",
   "ns": "rethinkdb",
-  "description": "`sync` ensures that writes on a given table are written to permanent storage. Queries that specify soft durability (`{durability: 'soft'}`) do not give such guarantees, so sync can be used to ensure the state of these queries. A call to sync does not return until all previous writes to the table are persisted."
+  "description": "`sync` ensures that writes on a given table are written to permanent storage. Queries that specify soft durability (`{durability: 'soft'}`) do not give such guarantees, so sync can be used to ensure the state of these queries. A call to sync does not return until all previous writes to the table are persisted.",
   "phrases": {
     "active": "Syncing table"
   },

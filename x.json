@@ -1,0 +1,541 @@
+{
+  "name": "rethinkdb",
+  "description": "rethinkdb for Chiχ",
+  "version": "0.0.3",
+  "licences": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/nodule/rethinkdb.git"
+  },
+  "dependencies": {
+    "rethinkdb": "latest"
+  },
+  "nodes": [
+    {
+      "ports": {
+        "input": {
+          "conn": {
+            "type": "function",
+            "title": "Connection",
+            "required": true
+          },
+          "noreplyWait": {
+            "type": "boolean",
+            "title": "Wait for noreply writes",
+            "description": "whether to wait for noreply writes to complete before closing (default true). If this is set to false, some outstanding noreply writes may be aborted.",
+            "default": true
+          }
+        },
+        "output": {
+          "error": {
+            "type": "object",
+            "title": "Error"
+          }
+        }
+      },
+      "phrases": {
+        "active": "Closing connection"
+      },
+      "description": "RethinkDB close",
+      "ns": "rethinkdb",
+      "name": "close",
+      "env": "server",
+      "fn": "output = [input.conn, 'close', { noreplyWait: input.noreplyWait }];\n"
+    },
+    {
+      "ports": {
+        "input": {
+          "title": "Options",
+          "options": {
+            "properties": {
+              "host": {
+                "type": "string",
+                "title": "Host",
+                "description": "the host to connect to",
+                "default": "localhost"
+              },
+              "port": {
+                "type": "string",
+                "title": "Port",
+                "description": "the port to connect on",
+                "default": "28015"
+              },
+              "db": {
+                "type": "string",
+                "title": "Database",
+                "description": "the default database to connect to",
+                "default": "test"
+              },
+              "authKey": {
+                "type": "string",
+                "title": "Authentication Key",
+                "description": "the authentication key"
+              }
+            }
+          }
+        },
+        "output": {
+          "error": {
+            "type": "object",
+            "title": "Error"
+          },
+          "conn": {
+            "type": "function",
+            "title": "Connection"
+          }
+        }
+      },
+      "require": {
+        "rethinkdb": "latest"
+      },
+      "phrases": {
+        "active": "Creating rethink DB connection: {{input.host}}:{{input.port}}/{{input.db}}"
+      },
+      "type": "provider",
+      "description": "RethinkDB connect",
+      "ns": "rethinkdb",
+      "name": "connect",
+      "env": "server",
+      "fn": "output = [rethinkdb, 'connect', input.options]\n"
+    },
+    {
+      "ports": {
+        "input": {
+          "conn": {
+            "type": "function",
+            "title": "Connection",
+            "required": true
+          },
+          "dbName": {
+            "type": "string",
+            "title": "Databse Name",
+            "description": "Select a database"
+          }
+        },
+        "output": {
+          "db": {
+            "type": "function",
+            "title": "Database"
+          }
+        }
+      },
+      "phrases": {
+        "active": "Selecting database {{input.db}}"
+      },
+      "description": "RethinkDB database",
+      "ns": "rethinkdb",
+      "name": "db",
+      "env": "server",
+      "fn": "output = { db: input.conn.db(input.dbName) };\n"
+    },
+    {
+      "ports": {
+        "input": {
+          "query": {
+            "type": "function",
+            "title": "Table",
+            "required": true
+          }
+        },
+        "output": {
+          "query": {
+            "type": "function",
+            "title": "Query"
+          }
+        }
+      },
+      "phrases": {
+        "active": "Deleting document"
+      },
+      "description": "delete document.",
+      "ns": "rethinkdb",
+      "name": "delete",
+      "env": "server",
+      "fn": "output = { query: input.query.delete() };\n"
+    },
+    {
+      "ports": {
+        "input": {
+          "table": {
+            "type": "function",
+            "title": "Table",
+            "required": true
+          },
+          "id": {
+            "type": "string",
+            "title": "ID",
+            "description": "Get a document by primary key"
+          }
+        },
+        "output": {
+          "query": {
+            "type": "function",
+            "title": "Query"
+          }
+        }
+      },
+      "phrases": {
+        "active": "Get {{input.id}}"
+      },
+      "description": "RethinkDB get",
+      "ns": "rethinkdb",
+      "name": "get",
+      "env": "server",
+      "fn": "output = { query: input.table.get(input.id) };\n"
+    },
+    {
+      "ports": {
+        "input": {
+          "table": {
+            "type": "function",
+            "title": "Table",
+            "required": true
+          },
+          "data": {
+            "type": "any",
+            "title": "JSON Document(s)",
+            "description": ""
+          }
+        },
+        "output": {
+          "query": {
+            "type": "function",
+            "title": "Query"
+          }
+        }
+      },
+      "phrases": {
+        "active": "inserting"
+      },
+      "description": "Insert JSON documents into a table. Accepts a single JSON document or an array of documents.",
+      "ns": "rethinkdb",
+      "name": "insert",
+      "env": "server",
+      "fn": "output = { query: input.table.insert(input.data) };\n"
+    },
+    {
+      "ports": {
+        "input": {
+          "conn": {
+            "type": "function",
+            "title": "Connection",
+            "required": true
+          },
+          "noreplyWait": {
+            "type": "boolean",
+            "title": "Wait for noreply writes",
+            "description": "whether to wait for noreply writes to complete before closing (default true). If this is set to false, some outstanding noreply writes may be aborted.",
+            "default": true
+          }
+        },
+        "output": {
+          "error": {
+            "type": "object",
+            "title": "Error"
+          },
+          "conn": {
+            "type": "function",
+            "title": "Connection"
+          }
+        }
+      },
+      "phrases": {
+        "active": "Reconnecting..."
+      },
+      "description": "RethinkDB reconnect",
+      "ns": "rethinkdb",
+      "name": "reconnect",
+      "env": "server",
+      "fn": "output = [input.conn, 'reconnect', { noreplyWait: input.noreplyWait }];\n"
+    },
+    {
+      "ports": {
+        "input": {
+          "query": {
+            "type": "function",
+            "title": "Table",
+            "required": true
+          },
+          "data": {
+            "type": "any",
+            "title": "Document replace",
+            "description": ""
+          }
+        },
+        "output": {
+          "query": {
+            "type": "function",
+            "title": "Query"
+          }
+        }
+      },
+      "phrases": {
+        "active": "Replacing document"
+      },
+      "description": "Replace JSON document in a table.",
+      "ns": "rethinkdb",
+      "name": "replace",
+      "env": "server",
+      "fn": "output = { query: input.query.replace(input.data) };\n"
+    },
+    {
+      "ports": {
+        "input": {
+          "query": {
+            "type": "function",
+            "title": "RethinkDB query",
+            "required": true
+          },
+          "useOutdated": {
+            "type": "boolean",
+            "title": "Use Outdated",
+            "description": "whether or not outdated reads are OK",
+            "default": false
+          },
+          "timeFormat": {
+            "type": "string",
+            "enum": [
+              "native",
+              "raw"
+            ],
+            "title": "Time Format",
+            "description": "what format to return times in (default: `'native'`). Set this to `'raw'` if you want times returned as JSON objects for exporting.",
+            "default": false
+          },
+          "profile": {
+            "type": "boolean",
+            "title": "Profile",
+            "description": "whether or not to return a profile of the query's execution.",
+            "default": false
+          }
+        },
+        "output": {
+          "error": {
+            "type": "object",
+            "title": "Error"
+          },
+          "result": {
+            "type": "object",
+            "title": "Result",
+            "description": "A single JSON result, or a cursor, depending on the query"
+          }
+        }
+      },
+      "phrases": {
+        "active": "running..."
+      },
+      "description": "RethinkDB run",
+      "ns": "rethinkdb",
+      "name": "run",
+      "env": "server",
+      "fn": "// err, the api is weird:\n// query.run(conn, callback)\n// query.run(options[, callback])\n// where is the connection in the second one.\n// ignoring options for now.\noutput = [input.query, 'run', input.conn]\n"
+    },
+    {
+      "ports": {
+        "input": {
+          "table": {
+            "type": "function",
+            "title": "Table",
+            "required": true
+          }
+        },
+        "output": {
+          "query": {
+            "type": "function",
+            "title": "Query"
+          }
+        }
+      },
+      "phrases": {
+        "active": "Syncing table"
+      },
+      "description": "`sync` ensures that writes on a given table are written to permanent storage. Queries that specify soft durability (`{durability: 'soft'}`) do not give such guarantees, so sync can be used to ensure the state of these queries. A call to sync does not return until all previous writes to the table are persisted.",
+      "ns": "rethinkdb",
+      "name": "sync",
+      "env": "server",
+      "fn": "output = { query: input.query.sync() };\n"
+    },
+    {
+      "ports": {
+        "input": {
+          "db": {
+            "type": "function",
+            "title": "Database",
+            "required": true
+          },
+          "tableName": {
+            "type": "string",
+            "title": "Table Name",
+            "description": "Select all documents in a table. This command can be chained with other commands to do further processing on the data."
+          },
+          "options": {
+            "title": "Options",
+            "properties": {
+              "useOutdated": {
+                "type": "boolean",
+                "title": "Use Outdated",
+                "default": false
+              }
+            }
+          }
+        },
+        "output": {
+          "table": {
+            "type": "function",
+            "title": "Table"
+          }
+        }
+      },
+      "phrases": {
+        "active": "Selecting table {{input.tableName}}"
+      },
+      "description": "RethinkDB table",
+      "ns": "rethinkdb",
+      "name": "table",
+      "env": "server",
+      "fn": "output = { table: input.db.table(input.tableName, input.options) };\n"
+    },
+    {
+      "ports": {
+        "input": {
+          "db": {
+            "type": "function",
+            "title": "Database",
+            "required": true
+          },
+          "tableName": {
+            "type": "string",
+            "title": "Table Name",
+            "required": true
+          }
+        },
+        "output": {
+          "table": {
+            "type": "function",
+            "title": "table"
+          }
+        }
+      },
+      "phrases": {
+        "active": "Creating table"
+      },
+      "description": "Table Create",
+      "ns": "rethinkdb",
+      "name": "tableCreate",
+      "env": "server",
+      "fn": "output = { table: input.db.tableCreate(input.tableName) };\n"
+    },
+    {
+      "ports": {
+        "input": {
+          "db": {
+            "type": "function",
+            "title": "Database",
+            "required": true
+          },
+          "tableName": {
+            "type": "string",
+            "title": "Table Name",
+            "required": true
+          }
+        },
+        "output": {
+          "table": {
+            "type": "function",
+            "title": "table"
+          }
+        }
+      },
+      "phrases": {
+        "active": "Dropping table"
+      },
+      "description": "Table Drop",
+      "ns": "rethinkdb",
+      "name": "tableDrop",
+      "env": "server",
+      "fn": "output = { table: input.db.tableDrop(input.tableName) };\n"
+    },
+    {
+      "ports": {
+        "input": {
+          "db": {
+            "type": "function",
+            "title": "Database",
+            "required": true
+          }
+        },
+        "output": {
+          "table": {
+            "type": "function",
+            "title": "table"
+          }
+        }
+      },
+      "phrases": {
+        "active": "Getting tableList"
+      },
+      "description": "Table List",
+      "ns": "rethinkdb",
+      "name": "tableList",
+      "env": "server",
+      "fn": "output = { table: input.db.tableList() };\n"
+    },
+    {
+      "ports": {
+        "input": {
+          "query": {
+            "type": "function",
+            "title": "Table",
+            "required": true
+          },
+          "data": {
+            "type": "any",
+            "title": "Document update",
+            "description": ""
+          }
+        },
+        "output": {
+          "query": {
+            "type": "function",
+            "title": "Query"
+          }
+        }
+      },
+      "phrases": {
+        "active": "Updating document"
+      },
+      "description": "Update JSON documents in a table. Accepts a JSON document.",
+      "ns": "rethinkdb",
+      "name": "update",
+      "env": "server",
+      "fn": "output = { query: input.query.update(input.data) };\n"
+    },
+    {
+      "ports": {
+        "input": {
+          "conn": {
+            "type": "function",
+            "title": "Connection",
+            "required": true
+          },
+          "dbName": {
+            "type": "string",
+            "title": "Database Name",
+            "description": "change the default database on this connection"
+          }
+        },
+        "output": {}
+      },
+      "phrases": {
+        "active": "Changing to database {{input.dbName}}"
+      },
+      "description": "RethinkDB use",
+      "ns": "rethinkdb",
+      "name": "use",
+      "env": "server",
+      "fn": "input.conn.use(input.dbName);\n"
+    }
+  ],
+  "twigs": [],
+  "env": "server"
+}

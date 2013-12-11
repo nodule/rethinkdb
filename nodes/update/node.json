@@ -1,7 +1,7 @@
 {
   "name": "update",
   "ns": "rethinkdb",
-  "description": "Update JSON documents in a table. Accepts a JSON document."
+  "description": "Update JSON documents in a table. Accepts a JSON document.",
   "phrases": {
     "active": "Updating document"
   },

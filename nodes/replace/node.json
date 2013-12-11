@@ -1,7 +1,7 @@
 {
   "name": "replace",
   "ns": "rethinkdb",
-  "description": "Replace JSON document in a table."
+  "description": "Replace JSON document in a table.",
   "phrases": {
     "active": "Replacing document"
   },

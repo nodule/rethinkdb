@@ -1,7 +1,7 @@
 {
   "name": "delete",
   "ns": "rethinkdb",
-  "description": "delete document."
+  "description": "delete document.",
   "phrases": {
     "active": "Deleting document"
   },
