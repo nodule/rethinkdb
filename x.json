@@ -109,7 +109,7 @@
           },
           "dbName": {
             "type": "string",
-            "title": "Databse Name",
+            "title": "Database Name",
             "description": "Select a database"
           }
         },
