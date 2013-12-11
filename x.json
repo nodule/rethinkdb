@@ -45,8 +45,8 @@
     {
       "ports": {
         "input": {
-          "title": "Options",
           "options": {
+            "title": "Options",
             "properties": {
               "host": {
                 "type": "string",
