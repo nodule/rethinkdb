@@ -45,6 +45,12 @@
     {
       "ports": {
         "input": {
+          "rethinkdb": {
+            "type": "function",
+            "title": "Rethink DB",
+            "description": "RethinkDB",
+            "required": true
+          },
           "options": {
             "title": "Options",
             "type": "object",
@@ -86,9 +92,6 @@
           }
         }
       },
-      "require": {
-        "rethinkdb": "latest"
-      },
       "phrases": {
         "active": "Creating rethink DB connection: {{input.host}}:{{input.port}}/{{input.db}}"
       },
@@ -97,7 +100,7 @@
       "ns": "rethinkdb",
       "name": "connect",
       "env": "server",
-      "fn": "output = [rethinkdb, 'connect', input.options]\n"
+      "fn": "output = [input.rethinkdb, 'connect', input.options]\n"
     },
     {
       "ports": {

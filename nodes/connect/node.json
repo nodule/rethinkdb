@@ -6,11 +6,14 @@
   "phrases": {
     "active": "Creating rethink DB connection: {{input.host}}:{{input.port}}/{{input.db}}"
   },
-  "require": {
-    "rethinkdb": "latest"
-  },
   "ports": {
     "input": {
+      "rethinkdb": {
+        "type": "function",
+        "title": "Rethink DB",
+        "description": "RethinkDB",
+        "required": true
+      },
       "options": {
         "title": "Options",
         "type": "object",
