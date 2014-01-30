@@ -40,7 +40,7 @@
       "ns": "rethinkdb",
       "name": "close",
       "env": "server",
-      "fn": "output = [input.conn, 'close', { noreplyWait: input.noreplyWait }];\n"
+      "fn": "output = [input.conn, 'close', {\n  noreplyWait: input.noreplyWait\n}];\n"
     },
     {
       "ports": {
@@ -130,7 +130,7 @@
       "ns": "rethinkdb",
       "name": "db",
       "env": "server",
-      "fn": "output = { db: input.rethinkdb.db(input.dbName) };\n"
+      "fn": "output = {\n  db: input.rethinkdb.db(input.dbName)\n};\n"
     },
     {
       "ports": {
@@ -155,7 +155,7 @@
       "ns": "rethinkdb",
       "name": "delete",
       "env": "server",
-      "fn": "output = { query: input.query.delete() };\n"
+      "fn": "output = {\n  query: input.query.delete()\n};\n"
     },
     {
       "ports": {
@@ -185,7 +185,7 @@
       "ns": "rethinkdb",
       "name": "get",
       "env": "server",
-      "fn": "output = { query: input.table.get(input.id) };\n"
+      "fn": "output = {\n  query: input.table.get(input.id)\n};\n"
     },
     {
       "ports": {
@@ -215,7 +215,7 @@
       "ns": "rethinkdb",
       "name": "insert",
       "env": "server",
-      "fn": "output = { query: input.table.insert(input.data) };\n"
+      "fn": "output = {\n  query: input.table.insert(input.data)\n};\n"
     },
     {
       "ports": {
@@ -250,7 +250,7 @@
       "ns": "rethinkdb",
       "name": "reconnect",
       "env": "server",
-      "fn": "output = [input.conn, 'reconnect', { noreplyWait: input.noreplyWait }];\n"
+      "fn": "output = [input.conn, 'reconnect', {\n  noreplyWait: input.noreplyWait\n}];\n"
     },
     {
       "ports": {
@@ -280,7 +280,7 @@
       "ns": "rethinkdb",
       "name": "replace",
       "env": "server",
-      "fn": "output = { query: input.query.replace(input.data) };\n"
+      "fn": "output = {\n  query: input.query.replace(input.data)\n};\n"
     },
     {
       "ports": {
@@ -302,7 +302,7 @@
       "ns": "rethinkdb",
       "name": "require",
       "env": "server",
-      "fn": "output = { rethinkdb: rethinkdb }\n"
+      "fn": "output = {\n  rethinkdb: rethinkdb\n}\n"
     },
     {
       "ports": {
@@ -384,7 +384,7 @@
       "ns": "rethinkdb",
       "name": "sync",
       "env": "server",
-      "fn": "output = { query: input.query.sync() };\n"
+      "fn": "output = {\n  query: input.query.sync()\n};\n"
     },
     {
       "ports": {
@@ -425,7 +425,7 @@
       "ns": "rethinkdb",
       "name": "table",
       "env": "server",
-      "fn": "output = { query: input.db.table(input.tableName, input.options) };\n"
+      "fn": "output = {\n  query: input.db.table(input.tableName, input.options)\n};\n"
     },
     {
       "ports": {
@@ -455,7 +455,7 @@
       "ns": "rethinkdb",
       "name": "tableCreate",
       "env": "server",
-      "fn": "output = { query: input.db.tableCreate(input.tableName) };\n"
+      "fn": "output = {\n  query: input.db.tableCreate(input.tableName)\n};\n"
     },
     {
       "ports": {
@@ -485,7 +485,7 @@
       "ns": "rethinkdb",
       "name": "tableDrop",
       "env": "server",
-      "fn": "output = { query: input.db.tableDrop(input.tableName) };\n"
+      "fn": "output = {\n  query: input.db.tableDrop(input.tableName)\n};\n"
     },
     {
       "ports": {
@@ -510,7 +510,7 @@
       "ns": "rethinkdb",
       "name": "tableList",
       "env": "server",
-      "fn": "output = { query: input.db.tableList() };\n"
+      "fn": "output = {\n  query: input.db.tableList()\n};\n"
     },
     {
       "ports": {
@@ -540,7 +540,7 @@
       "ns": "rethinkdb",
       "name": "update",
       "env": "server",
-      "fn": "output = { query: input.query.update(input.data) };\n"
+      "fn": "output = {\n  query: input.query.update(input.data)\n};\n"
     },
     {
       "ports": {
