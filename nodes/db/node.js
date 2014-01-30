@@ -1,1 +1,3 @@
-output = { db: input.rethinkdb.db(input.dbName) };
+output = {
+  db: input.rethinkdb.db(input.dbName)
+};

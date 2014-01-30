@@ -1,1 +1,3 @@
-output = { query: input.query.update(input.data) };
+output = {
+  query: input.query.update(input.data)
+};

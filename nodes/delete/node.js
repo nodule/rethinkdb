@@ -1,1 +1,3 @@
-output = { query: input.query.delete() };
+output = {
+  query: input.query.delete()
+};

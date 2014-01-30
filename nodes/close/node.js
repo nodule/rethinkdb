@@ -1,1 +1,3 @@
-output = [input.conn, 'close', { noreplyWait: input.noreplyWait }];
+output = [input.conn, 'close', {
+  noreplyWait: input.noreplyWait
+}];

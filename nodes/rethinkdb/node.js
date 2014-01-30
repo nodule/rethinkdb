@@ -1,1 +1,3 @@
-output = { rethinkdb: rethinkdb }
+output = {
+  rethinkdb: rethinkdb
+}

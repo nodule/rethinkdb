@@ -1,1 +1,3 @@
-output = { query: input.table.get(input.id) };
+output = {
+  query: input.table.get(input.id)
+};

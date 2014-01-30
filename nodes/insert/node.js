@@ -1,1 +1,3 @@
-output = { query: input.table.insert(input.data) };
+output = {
+  query: input.table.insert(input.data)
+};

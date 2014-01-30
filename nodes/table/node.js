@@ -1,1 +1,3 @@
-output = { query: input.db.table(input.tableName, input.options) };
+output = {
+  query: input.db.table(input.tableName, input.options)
+};

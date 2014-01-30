@@ -1,1 +1,3 @@
-output = [input.conn, 'reconnect', { noreplyWait: input.noreplyWait }];
+output = [input.conn, 'reconnect', {
+  noreplyWait: input.noreplyWait
+}];
