@@ -402,6 +402,7 @@
           "options": {
             "title": "Options",
             "type": "object",
+            "default": null,
             "properties": {
               "useOutdated": {
                 "type": "boolean",
