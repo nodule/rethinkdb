@@ -12,7 +12,7 @@
     "node": ">=0.6.0"
   },
   "dependencies": {
-    "rethinkdb": "latest"
+    "rethinkdb": "1.x.x"
   },
   "devDependencies": {
     "chit": "0.x.x"

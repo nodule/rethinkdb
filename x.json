@@ -8,9 +8,31 @@
     "url": "https://github.com/nodule/rethinkdb.git"
   },
   "dependencies": {
-    "rethinkdb": "latest"
+    "rethinkdb": "1.x.x"
   },
   "nodes": [
+    {
+      "ports": {
+        "input": {},
+        "output": {
+          "rethinkdb": {
+            "type": "function",
+            "title": "RethinkDB"
+          }
+        }
+      },
+      "require": {
+        "rethinkdb": "1.x.x"
+      },
+      "phrases": {
+        "active": "Requiring RethinkDB"
+      },
+      "description": "RethinkDB API",
+      "ns": "rethinkdb",
+      "name": "api",
+      "env": "server",
+      "fn": "output = {\n  rethinkdb: rethinkdb\n}\n"
+    },
     {
       "ports": {
         "input": {
@@ -281,28 +303,6 @@
       "name": "replace",
       "env": "server",
       "fn": "output = {\n  query: input.query.replace(input.data)\n};\n"
-    },
-    {
-      "ports": {
-        "input": {},
-        "output": {
-          "rethinkdb": {
-            "type": "function",
-            "title": "RethinkDB"
-          }
-        }
-      },
-      "require": {
-        "rethinkdb": "latest"
-      },
-      "phrases": {
-        "active": "Requiring RethinkDB"
-      },
-      "description": "RethinkDB require",
-      "ns": "rethinkdb",
-      "name": "require",
-      "env": "server",
-      "fn": "output = {\n  rethinkdb: rethinkdb\n}\n"
     },
     {
       "ports": {

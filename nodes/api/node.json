@@ -1,12 +1,12 @@
 {
-  "name": "require",
+  "name": "api",
   "ns": "rethinkdb",
-  "description": "RethinkDB require",
+  "description": "RethinkDB API",
   "phrases": {
     "active": "Requiring RethinkDB"
   },
   "require": {
-    "rethinkdb": "latest"
+    "rethinkdb": "1.x.x"
   },
   "ports": {
     "input": {
