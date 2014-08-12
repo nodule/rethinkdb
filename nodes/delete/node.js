@@ -1,3 +1,3 @@
-output = {
-  query: input.query.delete()
+on.input.in = function() {
+  data.delete()
 };

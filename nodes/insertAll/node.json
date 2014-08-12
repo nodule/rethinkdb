@@ -1,10 +1,9 @@
 {
-  "name": "get",
+  "name": "insertAll",
   "ns": "rethinkdb",
-  "async": true,
-  "description": "RethinkDB get",
+  "description": "Insert JSON documents into a table. Accepts array of documents.",
   "phrases": {
-    "active": "Get {{input.id}}"
+    "active": "Inserting"
   },
   "ports": {
     "input": {
@@ -13,11 +12,11 @@
         "title": "Table",
         "required": true
       },
-      "id": {
-        "type": "string",
-        "title": "ID",
+      "in": {
+        "type": "array",
         "async": true,
-        "description": "Get a document by primary key"
+        "title": "JSON Document(s)",
+        "description": ""
       }
     },
     "output": {

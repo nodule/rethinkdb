@@ -1,3 +1,3 @@
 output = {
-  query: input.db.tableList()
+  out: input.db.tableList()
 };

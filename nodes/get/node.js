@@ -1,3 +1,3 @@
-output = {
-  query: input.table.get(input.id)
-};
+on.input.id = function() {
+  output({ out: input.table.get(data) });
+}

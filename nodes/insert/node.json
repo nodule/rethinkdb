@@ -12,14 +12,15 @@
         "title": "Table",
         "required": true
       },
-      "data": {
-        "type": "any",
+      "in": {
+        "type": "object",
+        "async": true,
         "title": "JSON Document(s)",
         "description": ""
       }
     },
     "output": {
-      "query": {
+      "out": {
         "type": "function",
         "title": "Query"
       }

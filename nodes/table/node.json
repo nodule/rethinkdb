@@ -16,22 +16,10 @@
         "type": "string",
         "title": "Table Name",
         "description": "Select all documents in a table. This command can be chained with other commands to do further processing on the data."
-      },
-      "options": {
-        "title": "Options",
-        "type": "object",
-        "default": null,
-        "properties": {
-          "useOutdated": {
-            "type": "boolean",
-            "title": "Use Outdated",
-            "default": false
-          }
-        }
       }
     },
     "output": {
-      "query": {
+      "out": {
         "type": "function",
         "title": "Query"
       }

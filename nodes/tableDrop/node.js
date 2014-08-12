@@ -1,3 +1,3 @@
 output = {
-  query: input.db.tableDrop(input.tableName)
+  out: input.db.tableDrop(input.tableName)
 };

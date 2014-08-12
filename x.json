@@ -157,14 +157,15 @@
     {
       "ports": {
         "input": {
-          "query": {
+          "in": {
             "type": "function",
             "title": "Query",
+            "async": true,
             "required": true
           }
         },
         "output": {
-          "query": {
+          "out": {
             "type": "function",
             "title": "Query"
           }
@@ -174,10 +175,11 @@
         "active": "Deleting document"
       },
       "description": "delete document.",
+      "async": true,
       "ns": "rethinkdb",
       "name": "delete",
       "env": "server",
-      "fn": "output = {\n  query: input.query.delete()\n};\n"
+      "fn": "on.input.in = function() {\n  data.delete()\n};\n"
     },
     {
       "ports": {
@@ -190,11 +192,12 @@
           "id": {
             "type": "string",
             "title": "ID",
+            "async": true,
             "description": "Get a document by primary key"
           }
         },
         "output": {
-          "query": {
+          "out": {
             "type": "function",
             "title": "Query"
           }
@@ -204,10 +207,11 @@
         "active": "Get {{input.id}}"
       },
       "description": "RethinkDB get",
+      "async": true,
       "ns": "rethinkdb",
       "name": "get",
       "env": "server",
-      "fn": "output = {\n  query: input.table.get(input.id)\n};\n"
+      "fn": "on.input.id = function() {\n  output({ out: input.table.get(data) });\n}\n"
     },
     {
       "ports": {
@@ -217,14 +221,15 @@
             "title": "Table",
             "required": true
           },
-          "data": {
-            "type": "any",
+          "in": {
+            "type": "object",
+            "async": true,
             "title": "JSON Document(s)",
             "description": ""
           }
         },
         "output": {
-          "query": {
+          "out": {
             "type": "function",
             "title": "Query"
           }
@@ -237,7 +242,38 @@
       "ns": "rethinkdb",
       "name": "insert",
       "env": "server",
-      "fn": "output = {\n  query: input.table.insert(input.data)\n};\n"
+      "fn": "on.input.in = function() {\n  output({ out: input.table.insert(data) });\n}\n"
+    },
+    {
+      "ports": {
+        "input": {
+          "table": {
+            "type": "function",
+            "title": "Table",
+            "required": true
+          },
+          "in": {
+            "type": "array",
+            "async": true,
+            "title": "JSON Document(s)",
+            "description": ""
+          }
+        },
+        "output": {
+          "out": {
+            "type": "function",
+            "title": "Query"
+          }
+        }
+      },
+      "phrases": {
+        "active": "Inserting"
+      },
+      "description": "Insert JSON documents into a table. Accepts array of documents.",
+      "ns": "rethinkdb",
+      "name": "insertAll",
+      "env": "server",
+      "fn": "on.input.in = function() {\n  output({ out: input.table.insert(data) });\n}\n"
     },
     {
       "ports": {
@@ -289,7 +325,7 @@
           }
         },
         "output": {
-          "query": {
+          "out": {
             "type": "function",
             "title": "Query"
           }
@@ -302,7 +338,7 @@
       "ns": "rethinkdb",
       "name": "replace",
       "env": "server",
-      "fn": "output = {\n  query: input.query.replace(input.data)\n};\n"
+      "fn": "output = {\n  out: input.query.replace(input.data)\n};\n"
     },
     {
       "ports": {
@@ -345,7 +381,7 @@
             "type": "object",
             "title": "Error"
           },
-          "result": {
+          "out": {
             "type": "object",
             "title": "Result",
             "description": "A single JSON result, or a cursor, depending on the query"
@@ -371,7 +407,7 @@
           }
         },
         "output": {
-          "query": {
+          "out": {
             "type": "function",
             "title": "Query"
           }
@@ -384,7 +420,7 @@
       "ns": "rethinkdb",
       "name": "sync",
       "env": "server",
-      "fn": "output = {\n  query: input.query.sync()\n};\n"
+      "fn": "output = {\n  out: input.query.sync()\n};\n"
     },
     {
       "ports": {
@@ -398,22 +434,10 @@
             "type": "string",
             "title": "Table Name",
             "description": "Select all documents in a table. This command can be chained with other commands to do further processing on the data."
-          },
-          "options": {
-            "title": "Options",
-            "type": "object",
-            "default": null,
-            "properties": {
-              "useOutdated": {
-                "type": "boolean",
-                "title": "Use Outdated",
-                "default": false
-              }
-            }
           }
         },
         "output": {
-          "query": {
+          "out": {
             "type": "function",
             "title": "Query"
           }
@@ -426,7 +450,7 @@
       "ns": "rethinkdb",
       "name": "table",
       "env": "server",
-      "fn": "output = {\n  query: input.db.table(input.tableName, input.options)\n};\n"
+      "fn": "output = {\n  out: input.db.table(input.tableName)\n};\n"
     },
     {
       "ports": {
@@ -443,7 +467,7 @@
           }
         },
         "output": {
-          "query": {
+          "out": {
             "type": "function",
             "title": "Query"
           }
@@ -456,7 +480,7 @@
       "ns": "rethinkdb",
       "name": "tableCreate",
       "env": "server",
-      "fn": "output = {\n  query: input.db.tableCreate(input.tableName)\n};\n"
+      "fn": "output = {\n  out: input.db.tableCreate(input.tableName)\n};\n"
     },
     {
       "ports": {
@@ -473,7 +497,7 @@
           }
         },
         "output": {
-          "query": {
+          "out": {
             "type": "function",
             "title": "Query"
           }
@@ -486,7 +510,7 @@
       "ns": "rethinkdb",
       "name": "tableDrop",
       "env": "server",
-      "fn": "output = {\n  query: input.db.tableDrop(input.tableName)\n};\n"
+      "fn": "output = {\n  out: input.db.tableDrop(input.tableName)\n};\n"
     },
     {
       "ports": {
@@ -498,7 +522,7 @@
           }
         },
         "output": {
-          "query": {
+          "out": {
             "type": "function",
             "title": "query"
           }
@@ -511,7 +535,7 @@
       "ns": "rethinkdb",
       "name": "tableList",
       "env": "server",
-      "fn": "output = {\n  query: input.db.tableList()\n};\n"
+      "fn": "output = {\n  out: input.db.tableList()\n};\n"
     },
     {
       "ports": {
@@ -521,14 +545,15 @@
             "title": "Table",
             "required": true
           },
-          "data": {
-            "type": "any",
+          "in": {
+            "type": "object",
             "title": "Document update",
+            "async": true,
             "description": ""
           }
         },
         "output": {
-          "query": {
+          "out": {
             "type": "function",
             "title": "Query"
           }
@@ -538,10 +563,11 @@
         "active": "Updating document"
       },
       "description": "Update JSON documents in a table. Accepts a JSON document.",
+      "async": true,
       "ns": "rethinkdb",
       "name": "update",
       "env": "server",
-      "fn": "output = {\n  query: input.query.update(input.data)\n};\n"
+      "fn": "on.input.in = function() {\n  output({ out: input.query.update(data) });\n}\n"
     },
     {
       "ports": {

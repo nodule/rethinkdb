@@ -1,3 +1,3 @@
 output = {
-  query: input.db.tableCreate(input.tableName)
+  out: input.db.tableCreate(input.tableName)
 };

@@ -1,3 +1,3 @@
-output = {
-  query: input.query.update(input.data)
-};
+on.input.in = function() {
+  output({ out: input.query.update(data) });
+}

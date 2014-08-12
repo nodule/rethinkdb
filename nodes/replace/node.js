@@ -1,3 +1,3 @@
 output = {
-  query: input.query.replace(input.data)
+  out: input.query.replace(input.data)
 };

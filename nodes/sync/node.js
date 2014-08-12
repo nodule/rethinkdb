@@ -1,3 +1,3 @@
 output = {
-  query: input.query.sync()
+  out: input.query.sync()
 };

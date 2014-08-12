@@ -1,20 +1,22 @@
 {
   "name": "delete",
   "ns": "rethinkdb",
+  "async": true,
   "description": "delete document.",
   "phrases": {
     "active": "Deleting document"
   },
   "ports": {
     "input": {
-      "query": {
+      "in": {
         "type": "function",
         "title": "Query",
+        "async": true,
         "required": true
       }
     },
     "output": {
-      "query": {
+      "out": {
         "type": "function",
         "title": "Query"
       }

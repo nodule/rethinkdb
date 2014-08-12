@@ -42,7 +42,7 @@
         "type": "object",
         "title": "Error"
       },
-      "result": {
+      "out": {
         "type": "object",
         "title": "Result",
         "description": "A single JSON result, or a cursor, depending on the query"

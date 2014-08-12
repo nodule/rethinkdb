@@ -1,6 +1,7 @@
 {
   "name": "update",
   "ns": "rethinkdb",
+  "async": true,
   "description": "Update JSON documents in a table. Accepts a JSON document.",
   "phrases": {
     "active": "Updating document"
@@ -12,14 +13,15 @@
         "title": "Table",
         "required": true
       },
-      "data": {
-        "type": "any",
+      "in": {
+        "type": "object",
         "title": "Document update",
+        "async": true,
         "description": ""
       }
     },
     "output": {
-      "query": {
+      "out": {
         "type": "function",
         "title": "Query"
       }

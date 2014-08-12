@@ -14,7 +14,7 @@
       }
     },
     "output": {
-      "query": {
+      "out": {
         "type": "function",
         "title": "Query"
       }
