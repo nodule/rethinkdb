@@ -12,6 +12,11 @@
   },
   "nodes": [
     {
+      "dependencies": {
+        "npm": {
+          "rethinkdb": "1.x.x"
+        }
+      },
       "ports": {
         "input": {},
         "output": {
@@ -20,9 +25,6 @@
             "title": "RethinkDB"
           }
         }
-      },
-      "require": {
-        "rethinkdb": "1.x.x"
       },
       "phrases": {
         "active": "Requiring RethinkDB"

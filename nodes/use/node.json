@@ -18,7 +18,6 @@
         "description": "change the default database on this connection"
       }
     },
-    "output": {
-    }
+    "output": {}
   }
 }

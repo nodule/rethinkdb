@@ -5,17 +5,18 @@
   "phrases": {
     "active": "Requiring RethinkDB"
   },
-  "require": {
-    "rethinkdb": "1.x.x"
-  },
   "ports": {
-    "input": {
-    },
+    "input": {},
     "output": {
       "rethinkdb": {
         "type": "function",
         "title": "RethinkDB"
       }
+    }
+  },
+  "dependencies": {
+    "npm": {
+      "rethinkdb": "1.x.x"
     }
   }
 }
