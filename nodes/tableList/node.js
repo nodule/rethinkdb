@@ -1,3 +1,1 @@
-output = {
-  out: $.db.tableList()
-};
+output = {out: $.create($.db.tableList())};

@@ -1,3 +1,3 @@
 output = {
-  rethinkdb: rethinkdb
+  rethinkdb: $.create(rethinkdb)
 }

@@ -1,3 +1,3 @@
 on.input.in = function() {
-  output({ out: $.table.insert($.in) });
+  output({ out: $.create($.table.insert($.in)) });
 }

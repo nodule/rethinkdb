@@ -1,3 +1,1 @@
-output = {
-  out: $.db.table($.tableName)
-};
+output = {out: $.create($.db.table($.tableName))};

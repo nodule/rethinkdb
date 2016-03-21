@@ -1,3 +1,3 @@
 on.input.in = function() {
-  output({ out: $.query.update($.in) });
+  output({ out: $.create($.query.update($.in)) });
 }

@@ -1,3 +1,1 @@
-output = {
-  out: $.query.sync()
-};
+output = {out: $.create($.query.sync())};

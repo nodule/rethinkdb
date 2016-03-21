@@ -1,3 +1,1 @@
-output = {
-  out: $.query.replace($.data)
-};
+output = {out: $.create($.query.replace($.data))};

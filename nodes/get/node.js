@@ -1,3 +1,3 @@
 on.input.id = function() {
-  output({ out: $.table.get($.id) });
+  output({ out: $.create($.table.get($.id)) });
 }

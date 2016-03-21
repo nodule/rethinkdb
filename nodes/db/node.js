@@ -1,3 +1,1 @@
-output = {
-  db: $.rethinkdb.db($.dbName)
-};
+output = {db: $.create($.rethinkdb.db($.dbName))};
