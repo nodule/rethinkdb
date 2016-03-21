@@ -1,3 +1,3 @@
 on.input.in = function() {
-  data.delete()
+  input.in.delete()
 };
