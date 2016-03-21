@@ -1,3 +1,3 @@
 output = {
-  out: input.db.tableCreate(input.tableName)
+  out: $.db.tableCreate($.tableName)
 };

@@ -1,3 +1,3 @@
 output = {
-  out: input.db.tableList()
+  out: $.db.tableList()
 };

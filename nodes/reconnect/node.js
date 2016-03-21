@@ -1,3 +1,3 @@
-output = [input.conn, 'reconnect', {
-  noreplyWait: input.noreplyWait
+output = [$.conn, 'reconnect', {
+  noreplyWait: $.noreplyWait
 }];

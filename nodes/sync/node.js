@@ -1,3 +1,3 @@
 output = {
-  out: input.query.sync()
+  out: $.query.sync()
 };

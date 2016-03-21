@@ -1,1 +1,1 @@
-output = [input.rethinkdb, 'connect', input.options]
+output = [$.rethinkdb, 'connect', $.options]

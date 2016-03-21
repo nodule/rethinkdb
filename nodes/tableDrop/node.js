@@ -1,3 +1,3 @@
 output = {
-  out: input.db.tableDrop(input.tableName)
+  out: $.db.tableDrop($.tableName)
 };

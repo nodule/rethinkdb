@@ -1,1 +1,1 @@
-input.conn.use(input.dbName);
+$.conn.use($.dbName);

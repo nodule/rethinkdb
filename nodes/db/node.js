@@ -1,3 +1,3 @@
 output = {
-  db: input.rethinkdb.db(input.dbName)
+  db: $.rethinkdb.db($.dbName)
 };
