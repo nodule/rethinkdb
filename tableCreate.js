@@ -1,21 +1,21 @@
 module.exports = {
-  name: "replace",
+  name: "tableCreate",
   ns: "rethinkdb",
-  description: "Replace JSON document in a table.",
+  description: "Table Create",
   phrases: {
-    active: "Replacing document"
+    active: "Creating table"
   },
   ports: {
     input: {
-      query: {
+      db: {
         type: "function",
-        title: "Table",
+        title: "Database",
         required: true
       },
-      data: {
-        type: "any",
-        title: "Document replace",
-        description: ""
+      tableName: {
+        type: "string",
+        title: "Table Name",
+        required: true
       }
     },
     output: {
@@ -25,10 +25,10 @@ module.exports = {
       }
     }
   },
-  fn: function replace(input, $, output, state, done, cb, on) {
+  fn: function tableCreate(input, $, output, state, done, cb, on) {
     var r = function() {
       output = {
-        out: $.create($.query.replace($.data))
+        out: $.create($.db.tableCreate($.tableName))
       };
     }.call(this);
     return {

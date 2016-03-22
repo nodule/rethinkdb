@@ -1,1 +1,3 @@
-$.conn.use($.dbName);
+output = function() {
+  $.conn.use($.dbName);
+}

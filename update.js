@@ -1,26 +1,27 @@
 module.exports = {
-  name: "insertAll",
+  name: "update",
   ns: "rethinkdb",
-  description: "Insert JSON documents into a table. Accepts array of documents.",
+  async: true,
+  description: "Update JSON documents in a table. Accepts a JSON document.",
   phrases: {
-    active: "Inserting"
+    active: "Updating document"
   },
   ports: {
     input: {
-      table: {
+      query: {
         type: "function",
         title: "Table",
         required: true
       },
       "in": {
-        type: "array",
+        type: "object",
+        title: "Document update",
         async: true,
-        title: "JSON Document(s)",
         description: "",
         fn: function __IN__(data, x, source, state, input, output) {
           var r = function() {
             output({
-              out: $.create($.table.insert($.in))
+              out: $.create($.query.update($.in))
             });
           }.call(this);
           return {

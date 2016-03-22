@@ -33,7 +33,7 @@
       "ns": "rethinkdb",
       "name": "api",
       "env": "server",
-      "fn": "output = {\n  rethinkdb: rethinkdb\n}\n"
+      "fn": "output = {\n  rethinkdb: $.create(rethinkdb)\n}\n"
     },
     {
       "ports": {
@@ -64,7 +64,7 @@
       "ns": "rethinkdb",
       "name": "close",
       "env": "server",
-      "fn": "output = [input.conn, 'close', {\n  noreplyWait: input.noreplyWait\n}];\n"
+      "fn": "output = [$.conn, 'close', {noreplyWait: $.noreplyWait}];\n"
     },
     {
       "ports": {
@@ -124,7 +124,7 @@
       "ns": "rethinkdb",
       "name": "connect",
       "env": "server",
-      "fn": "output = [input.rethinkdb, 'connect', input.options]\n"
+      "fn": "output = [$.rethinkdb, 'connect', $.options]\n"
     },
     {
       "ports": {
@@ -154,7 +154,7 @@
       "ns": "rethinkdb",
       "name": "db",
       "env": "server",
-      "fn": "output = {\n  db: input.rethinkdb.db(input.dbName)\n};\n"
+      "fn": "output = {db: $.create($.rethinkdb.db($.dbName))};\n"
     },
     {
       "ports": {
@@ -181,7 +181,7 @@
       "ns": "rethinkdb",
       "name": "delete",
       "env": "server",
-      "fn": "on.input.in = function() {\n  data.delete()\n};\n"
+      "fn": "on.input.in = function() {\n  $.in.delete()\n};\n"
     },
     {
       "ports": {
@@ -213,7 +213,7 @@
       "ns": "rethinkdb",
       "name": "get",
       "env": "server",
-      "fn": "on.input.id = function() {\n  output({ out: input.table.get(data) });\n}\n"
+      "fn": "on.input.id = function() {\n  output({ out: $.create($.table.get($.id)) });\n}\n"
     },
     {
       "ports": {
@@ -244,7 +244,7 @@
       "ns": "rethinkdb",
       "name": "insert",
       "env": "server",
-      "fn": "on.input.in = function() {\n  output({ out: input.table.insert(data) });\n}\n"
+      "fn": "on.input.in = function() {\n  output({ out: $.create($.table.insert($.in)) });\n}\n"
     },
     {
       "ports": {
@@ -275,7 +275,7 @@
       "ns": "rethinkdb",
       "name": "insertAll",
       "env": "server",
-      "fn": "on.input.in = function() {\n  output({ out: input.table.insert(data) });\n}\n"
+      "fn": "on.input.in = function() {\n  output({ out: $.create($.table.insert($.in)) });\n}\n"
     },
     {
       "ports": {
@@ -310,7 +310,7 @@
       "ns": "rethinkdb",
       "name": "reconnect",
       "env": "server",
-      "fn": "output = [input.conn, 'reconnect', {\n  noreplyWait: input.noreplyWait\n}];\n"
+      "fn": "output = [$.conn, 'reconnect', {noreplyWait: $.noreplyWait}];\n"
     },
     {
       "ports": {
@@ -340,7 +340,7 @@
       "ns": "rethinkdb",
       "name": "replace",
       "env": "server",
-      "fn": "output = {\n  out: input.query.replace(input.data)\n};\n"
+      "fn": "output = {out: $.create($.query.replace($.data))};\n"
     },
     {
       "ports": {
@@ -397,7 +397,7 @@
       "ns": "rethinkdb",
       "name": "run",
       "env": "server",
-      "fn": "// err, the api is weird:\n// query.run(conn, callback)\n// query.run(options[, callback])\n// where is the connection in the second one.\n// ignoring options for now.\noutput = [input.query, 'run', input.conn]\n"
+      "fn": "output = [$.query, 'run', $.conn]\n"
     },
     {
       "ports": {
@@ -422,7 +422,7 @@
       "ns": "rethinkdb",
       "name": "sync",
       "env": "server",
-      "fn": "output = {\n  out: input.query.sync()\n};\n"
+      "fn": "output = {out: $.create($.query.sync())};\n"
     },
     {
       "ports": {
@@ -452,7 +452,7 @@
       "ns": "rethinkdb",
       "name": "table",
       "env": "server",
-      "fn": "output = {\n  out: input.db.table(input.tableName)\n};\n"
+      "fn": "output = {out: $.create($.db.table($.tableName))};\n"
     },
     {
       "ports": {
@@ -482,7 +482,7 @@
       "ns": "rethinkdb",
       "name": "tableCreate",
       "env": "server",
-      "fn": "output = {\n  out: input.db.tableCreate(input.tableName)\n};\n"
+      "fn": "output = {out: $.create($.db.tableCreate($.tableName))};\n"
     },
     {
       "ports": {
@@ -512,7 +512,7 @@
       "ns": "rethinkdb",
       "name": "tableDrop",
       "env": "server",
-      "fn": "output = {\n  out: input.db.tableDrop(input.tableName)\n};\n"
+      "fn": "output = {out: $.create($.db.tableDrop($.tableName))};\n"
     },
     {
       "ports": {
@@ -537,7 +537,7 @@
       "ns": "rethinkdb",
       "name": "tableList",
       "env": "server",
-      "fn": "output = {\n  out: input.db.tableList()\n};\n"
+      "fn": "output = {out: $.create($.db.tableList())};\n"
     },
     {
       "ports": {
@@ -569,7 +569,7 @@
       "ns": "rethinkdb",
       "name": "update",
       "env": "server",
-      "fn": "on.input.in = function() {\n  output({ out: input.query.update(data) });\n}\n"
+      "fn": "on.input.in = function() {\n  output({ out: $.create($.query.update($.in)) });\n}\n"
     },
     {
       "ports": {
@@ -594,7 +594,7 @@
       "ns": "rethinkdb",
       "name": "use",
       "env": "server",
-      "fn": "input.conn.use(input.dbName);\n"
+      "fn": "output = function() {\n  $.conn.use($.dbName);\n}\n"
     }
   ],
   "twigs": [],
