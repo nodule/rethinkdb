@@ -13,7 +13,7 @@ module.exports = {
         title: "Query",
         async: true,
         required: true,
-        fn: function __IN__(data, x, source, state, input, output) {
+        fn: function __IN__(data, source, state, input, $, output) {
           var r = function() {
             $.in.delete()
           }.call(this);

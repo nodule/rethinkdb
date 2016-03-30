@@ -18,7 +18,7 @@ module.exports = {
         title: "Document update",
         async: true,
         description: "",
-        fn: function __IN__(data, x, source, state, input, output) {
+        fn: function __IN__(data, source, state, input, $, output) {
           var r = function() {
             output({
               out: $.create($.query.update($.in))

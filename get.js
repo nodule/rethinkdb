@@ -18,7 +18,7 @@ module.exports = {
         title: "ID",
         async: true,
         description: "Get a document by primary key",
-        fn: function __ID__(data, x, source, state, input, output) {
+        fn: function __ID__(data, source, state, input, $, output) {
           var r = function() {
             output({
               out: $.create($.table.get($.id))

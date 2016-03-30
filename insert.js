@@ -17,7 +17,7 @@ module.exports = {
         async: true,
         title: "JSON Document(s)",
         description: "",
-        fn: function __IN__(data, x, source, state, input, output) {
+        fn: function __IN__(data, source, state, input, $, output) {
           var r = function() {
             output({
               out: $.create($.table.insert($.in))
