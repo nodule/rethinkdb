@@ -12,10 +12,11 @@
   },
   "nodes": [
     {
-      "dependencies": {
-        "npm": {
-          "rethinkdb": "1.x.x"
-        }
+      "name": "api",
+      "ns": "rethinkdb",
+      "description": "RethinkDB API",
+      "phrases": {
+        "active": "Requiring RethinkDB"
       },
       "ports": {
         "input": {},
@@ -26,16 +27,21 @@
           }
         }
       },
-      "phrases": {
-        "active": "Requiring RethinkDB"
+      "dependencies": {
+        "npm": {
+          "rethinkdb": "1.x.x"
+        }
       },
-      "description": "RethinkDB API",
-      "ns": "rethinkdb",
-      "name": "api",
       "env": "server",
       "fn": "output = {\n  rethinkdb: $.create(rethinkdb)\n}\n"
     },
     {
+      "name": "close",
+      "ns": "rethinkdb",
+      "description": "RethinkDB close",
+      "phrases": {
+        "active": "Closing connection"
+      },
       "ports": {
         "input": {
           "conn": {
@@ -57,16 +63,17 @@
           }
         }
       },
-      "phrases": {
-        "active": "Closing connection"
-      },
-      "description": "RethinkDB close",
-      "ns": "rethinkdb",
-      "name": "close",
       "env": "server",
       "fn": "output = [$.conn, 'close', {noreplyWait: $.noreplyWait}];\n"
     },
     {
+      "name": "connect",
+      "ns": "rethinkdb",
+      "description": "RethinkDB connect",
+      "type": "provider",
+      "phrases": {
+        "active": "Creating rethink DB connection: {{input.host}}:{{input.port}}/{{input.db}}"
+      },
       "ports": {
         "input": {
           "rethinkdb": {
@@ -116,17 +123,16 @@
           }
         }
       },
-      "phrases": {
-        "active": "Creating rethink DB connection: {{input.host}}:{{input.port}}/{{input.db}}"
-      },
-      "type": "provider",
-      "description": "RethinkDB connect",
-      "ns": "rethinkdb",
-      "name": "connect",
       "env": "server",
       "fn": "output = [$.rethinkdb, 'connect', $.options]\n"
     },
     {
+      "name": "db",
+      "ns": "rethinkdb",
+      "description": "RethinkDB database",
+      "phrases": {
+        "active": "Selecting database {{input.db}}"
+      },
       "ports": {
         "input": {
           "rethinkdb": {
@@ -147,16 +153,17 @@
           }
         }
       },
-      "phrases": {
-        "active": "Selecting database {{input.db}}"
-      },
-      "description": "RethinkDB database",
-      "ns": "rethinkdb",
-      "name": "db",
       "env": "server",
       "fn": "output = {db: $.create($.rethinkdb.db($.dbName))};\n"
     },
     {
+      "name": "delete",
+      "ns": "rethinkdb",
+      "async": true,
+      "description": "delete document.",
+      "phrases": {
+        "active": "Deleting document"
+      },
       "ports": {
         "input": {
           "in": {
@@ -173,17 +180,17 @@
           }
         }
       },
-      "phrases": {
-        "active": "Deleting document"
-      },
-      "description": "delete document.",
-      "async": true,
-      "ns": "rethinkdb",
-      "name": "delete",
       "env": "server",
       "fn": "on.input.in = function() {\n  $.in.delete()\n};\n"
     },
     {
+      "name": "get",
+      "ns": "rethinkdb",
+      "async": true,
+      "description": "RethinkDB get",
+      "phrases": {
+        "active": "Get {{input.id}}"
+      },
       "ports": {
         "input": {
           "table": {
@@ -205,17 +212,16 @@
           }
         }
       },
-      "phrases": {
-        "active": "Get {{input.id}}"
-      },
-      "description": "RethinkDB get",
-      "async": true,
-      "ns": "rethinkdb",
-      "name": "get",
       "env": "server",
       "fn": "on.input.id = function() {\n  output({ out: $.create($.table.get($.id)) });\n}\n"
     },
     {
+      "name": "insert",
+      "ns": "rethinkdb",
+      "description": "Insert JSON documents into a table. Accepts a single JSON document or an array of documents.",
+      "phrases": {
+        "active": "inserting"
+      },
       "ports": {
         "input": {
           "table": {
@@ -237,16 +243,16 @@
           }
         }
       },
-      "phrases": {
-        "active": "inserting"
-      },
-      "description": "Insert JSON documents into a table. Accepts a single JSON document or an array of documents.",
-      "ns": "rethinkdb",
-      "name": "insert",
       "env": "server",
       "fn": "on.input.in = function() {\n  output({ out: $.create($.table.insert($.in)) });\n}\n"
     },
     {
+      "name": "insertAll",
+      "ns": "rethinkdb",
+      "description": "Insert JSON documents into a table. Accepts array of documents.",
+      "phrases": {
+        "active": "Inserting"
+      },
       "ports": {
         "input": {
           "table": {
@@ -268,16 +274,16 @@
           }
         }
       },
-      "phrases": {
-        "active": "Inserting"
-      },
-      "description": "Insert JSON documents into a table. Accepts array of documents.",
-      "ns": "rethinkdb",
-      "name": "insertAll",
       "env": "server",
       "fn": "on.input.in = function() {\n  output({ out: $.create($.table.insert($.in)) });\n}\n"
     },
     {
+      "name": "reconnect",
+      "ns": "rethinkdb",
+      "description": "RethinkDB reconnect",
+      "phrases": {
+        "active": "Reconnecting..."
+      },
       "ports": {
         "input": {
           "conn": {
@@ -303,16 +309,16 @@
           }
         }
       },
-      "phrases": {
-        "active": "Reconnecting..."
-      },
-      "description": "RethinkDB reconnect",
-      "ns": "rethinkdb",
-      "name": "reconnect",
       "env": "server",
       "fn": "output = [$.conn, 'reconnect', {noreplyWait: $.noreplyWait}];\n"
     },
     {
+      "name": "replace",
+      "ns": "rethinkdb",
+      "description": "Replace JSON document in a table.",
+      "phrases": {
+        "active": "Replacing document"
+      },
       "ports": {
         "input": {
           "query": {
@@ -333,16 +339,16 @@
           }
         }
       },
-      "phrases": {
-        "active": "Replacing document"
-      },
-      "description": "Replace JSON document in a table.",
-      "ns": "rethinkdb",
-      "name": "replace",
       "env": "server",
       "fn": "output = {out: $.create($.query.replace($.data))};\n"
     },
     {
+      "name": "run",
+      "ns": "rethinkdb",
+      "description": "RethinkDB run",
+      "phrases": {
+        "active": "running..."
+      },
       "ports": {
         "input": {
           "query": {
@@ -390,16 +396,16 @@
           }
         }
       },
-      "phrases": {
-        "active": "running..."
-      },
-      "description": "RethinkDB run",
-      "ns": "rethinkdb",
-      "name": "run",
       "env": "server",
       "fn": "output = [$.query, 'run', $.conn]\n"
     },
     {
+      "name": "sync",
+      "ns": "rethinkdb",
+      "description": "`sync` ensures that writes on a given table are written to permanent storage. Queries that specify soft durability (`{durability: 'soft'}`) do not give such guarantees, so sync can be used to ensure the state of these queries. A call to sync does not return until all previous writes to the table are persisted.",
+      "phrases": {
+        "active": "Syncing table"
+      },
       "ports": {
         "input": {
           "query": {
@@ -415,16 +421,16 @@
           }
         }
       },
-      "phrases": {
-        "active": "Syncing table"
-      },
-      "description": "`sync` ensures that writes on a given table are written to permanent storage. Queries that specify soft durability (`{durability: 'soft'}`) do not give such guarantees, so sync can be used to ensure the state of these queries. A call to sync does not return until all previous writes to the table are persisted.",
-      "ns": "rethinkdb",
-      "name": "sync",
       "env": "server",
       "fn": "output = {out: $.create($.query.sync())};\n"
     },
     {
+      "name": "table",
+      "ns": "rethinkdb",
+      "description": "RethinkDB table",
+      "phrases": {
+        "active": "Selecting table {{input.tableName}}"
+      },
       "ports": {
         "input": {
           "db": {
@@ -445,16 +451,16 @@
           }
         }
       },
-      "phrases": {
-        "active": "Selecting table {{input.tableName}}"
-      },
-      "description": "RethinkDB table",
-      "ns": "rethinkdb",
-      "name": "table",
       "env": "server",
       "fn": "output = {out: $.create($.db.table($.tableName))};\n"
     },
     {
+      "name": "tableCreate",
+      "ns": "rethinkdb",
+      "description": "Table Create",
+      "phrases": {
+        "active": "Creating table"
+      },
       "ports": {
         "input": {
           "db": {
@@ -475,16 +481,16 @@
           }
         }
       },
-      "phrases": {
-        "active": "Creating table"
-      },
-      "description": "Table Create",
-      "ns": "rethinkdb",
-      "name": "tableCreate",
       "env": "server",
       "fn": "output = {out: $.create($.db.tableCreate($.tableName))};\n"
     },
     {
+      "name": "tableDrop",
+      "ns": "rethinkdb",
+      "description": "Table Drop",
+      "phrases": {
+        "active": "Dropping table"
+      },
       "ports": {
         "input": {
           "db": {
@@ -505,16 +511,16 @@
           }
         }
       },
-      "phrases": {
-        "active": "Dropping table"
-      },
-      "description": "Table Drop",
-      "ns": "rethinkdb",
-      "name": "tableDrop",
       "env": "server",
       "fn": "output = {out: $.create($.db.tableDrop($.tableName))};\n"
     },
     {
+      "name": "tableList",
+      "ns": "rethinkdb",
+      "description": "Table List",
+      "phrases": {
+        "active": "Getting tableList"
+      },
       "ports": {
         "input": {
           "db": {
@@ -530,16 +536,17 @@
           }
         }
       },
-      "phrases": {
-        "active": "Getting tableList"
-      },
-      "description": "Table List",
-      "ns": "rethinkdb",
-      "name": "tableList",
       "env": "server",
       "fn": "output = {out: $.create($.db.tableList())};\n"
     },
     {
+      "name": "update",
+      "ns": "rethinkdb",
+      "async": true,
+      "description": "Update JSON documents in a table. Accepts a JSON document.",
+      "phrases": {
+        "active": "Updating document"
+      },
       "ports": {
         "input": {
           "query": {
@@ -561,17 +568,16 @@
           }
         }
       },
-      "phrases": {
-        "active": "Updating document"
-      },
-      "description": "Update JSON documents in a table. Accepts a JSON document.",
-      "async": true,
-      "ns": "rethinkdb",
-      "name": "update",
       "env": "server",
       "fn": "on.input.in = function() {\n  output({ out: $.create($.query.update($.in)) });\n}\n"
     },
     {
+      "name": "use",
+      "ns": "rethinkdb",
+      "description": "RethinkDB use",
+      "phrases": {
+        "active": "Changing to database {{input.dbName}}"
+      },
       "ports": {
         "input": {
           "conn": {
@@ -587,16 +593,9 @@
         },
         "output": {}
       },
-      "phrases": {
-        "active": "Changing to database {{input.dbName}}"
-      },
-      "description": "RethinkDB use",
-      "ns": "rethinkdb",
-      "name": "use",
       "env": "server",
       "fn": "output = function() {\n  $.conn.use($.dbName);\n}\n"
     }
   ],
-  "twigs": [],
   "env": "server"
 }
